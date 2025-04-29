@@ -1,20 +1,46 @@
 import Image from "next/image";
-import { formatDate, getImageUrl } from "@/utils/generic";
+import { getImageUrl, limitText } from "@/utils/generic";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export const MovieCard = ({ movie, isLoading }: { movie: Movie, isLoading: boolean }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="flex flex-col items-center rounded-lg shadow-md hover:scale-105 transition transform cursor-pointer w-full">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="w-full cursor-pointer relative rounded-md overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <Image
-        src={`${!isLoading ? getImageUrl(movie.poster_path) : '/loading.gif'}`}
+        src={!isLoading ? getImageUrl(movie.poster_path) : '/loading.gif'}
         alt={movie.title}
-        className="rounded"
+        className="rounded w-full"
         width={200}
         height={300}
       />
-      <h2 className="mt-2 text-center font-semibold text-lg text-gray-800 dark:text-gray-100 truncate w-full">
-        {movie.title}
-      </h2>
-      <p className="text-sm text-gray-600 dark:text-gray-300">{formatDate(movie.release_date)}</p>
-    </div>
+      <div className="absolute top-5 px-3 py-1 bg-indigo-600 text-white text-sm rounded-e-full font-bold">
+        {(movie.vote_average * 10).toFixed(0)}%
+      </div>
+
+      {/* Motion overlay on hover */}
+      {isHovered && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-0 left-0 w-full h-full flex items-center justify-center font-bold text-white bg-black/70 backdrop-blur-sm p-4"
+        >
+          <div className="text-center w-full">
+            <h1 className="text-xl md:text-2xl">{movie.title}</h1>
+            <p className="text-sm font-medium mt-2 text-justify">{limitText(movie.overview, 125)}</p>
+          </div>
+        </motion.div>
+      )}
+    </motion.div>
   );
 };

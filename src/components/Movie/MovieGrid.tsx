@@ -1,19 +1,14 @@
 'use client'
 import { useFetchTrendingMovies } from "@/api/api";
-import { MovieCard } from "./MovieCard";
+import { MovieCarousel } from "./MovieCarousel";
 
 export const MovieGrid = () => {
-  const { movies, isLoading, isError } = useFetchTrendingMovies();
+  const { movies, isLoading } = useFetchTrendingMovies();
 
   return (
     <div className="flex flex-wrap justify-center">
       <div className="w-full p-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
-          {/* Movie Cards */}
-          {movies?.map((movie: Movie) => (
-            <MovieCard movie={movie} key={movie.id} isLoading={isLoading} />
-          ))} 
-        </div>
+        <MovieCarousel movies={movies} isLoading={isLoading} title="Trending Movies" slug="/trending" />
       </div>
     </div>
   )
