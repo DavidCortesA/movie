@@ -7,13 +7,14 @@ export const MovieCard = ({ movie, isLoading }: { movie: Movie, isLoading: boole
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
+    <motion.a
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="w-full cursor-pointer relative rounded-md overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      href={`/movies/${movie.id}`}
     >
       <Image
         src={!isLoading ? getImageUrl(movie.poster_path) : '/loading.gif'}
@@ -45,6 +46,6 @@ export const MovieCard = ({ movie, isLoading }: { movie: Movie, isLoading: boole
           </div>
         </motion.div>
       )}
-    </motion.div>
+    </motion.a>
   );
 };

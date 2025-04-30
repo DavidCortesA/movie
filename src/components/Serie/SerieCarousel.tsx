@@ -51,7 +51,7 @@ export const SerieCarousel = ({
         {/* Contenedor de tarjetas */}
         <div
           ref={carouselRef}
-          className="flex overflow-x-hidden gap-4 px-6 py-3 scroll-smooth scrollbar-hide"
+          className="flex overflow-hidden gap-4 px-6 py-3 scroll-smooth scrollbar-hide"
         >
           {series.map((serie: TVShow) => (
             <div key={serie.id} className="min-w-[200px]">

@@ -10,12 +10,14 @@ export const Navbar = () => {
   const navItems = {
     movies: [
       { name: "Populares", href: "/movies/popular" },
+      { name: "Tendencias", href: "/movies/trending" },
       { name: "En Cartelera", href: "/movies/now-playing" },
       { name: "Próximamente", href: "/movies/upcoming" },
       { name: "Mejor Calificadas", href: "/movies/top-rated" },
     ],
     series: [
       { name: "Populares", href: "/series/popular" },
+      { name: "Tendencias", href: "/series/trending" },
       { name: "Al Aire", href: "/series/on-air" },
       { name: "Mejor Calificadas", href: "/series/top-rated" },
     ],

@@ -6,12 +6,12 @@ import { SerieCarousel } from "@/components/Serie/SerieCarousel";
 
 
 export default function Home() {
-  const { trendingMovie, isLoadingTrending } = useFetchTrendingMovies();
-  const { popularMovie, isLoadingPopular } = useFetchPopularMovies();
-  const { upcomingMovie, isLoadingUpcoming } = useFetchUpcomingMovies();
-  const { trendingTV, isLoadingTrendingTV } = useFetchTrendingSeries();
-  const { topRatedTV, isLoadingTopRated } = useFetchTopRatedSeries();
-  const { onAirTV, isLoadingOnAir } = useFetchOnAirSeries();
+  const { trendingMovie, isLoadingTrending } = useFetchTrendingMovies(1);
+  const { popularMovie, isLoadingPopular } = useFetchPopularMovies(1);
+  const { upcomingMovie, isLoadingUpcoming } = useFetchUpcomingMovies(1);
+  const { trendingTV, isLoadingTrendingTV } = useFetchTrendingSeries(1);
+  const { topRatedTV, isLoadingTopRated } = useFetchTopRatedSeries(1);
+  const { onAirTV, isLoadingOnAir } = useFetchOnAirSeries(1);
   
   return (
     <div className="w-full flex flex-col gap-3 items-center justify-center">

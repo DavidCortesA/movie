@@ -7,13 +7,14 @@ export const SerieCard = ({ serie, isLoading }: { serie: TVShow, isLoading: bool
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
+    <motion.a
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="w-full cursor-pointer relative rounded-md overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      href={`/series/${serie.id}`}
     >
       <Image
         src={!isLoading ? getImageUrl(serie.poster_path) : '/loading.gif'}
@@ -45,6 +46,6 @@ export const SerieCard = ({ serie, isLoading }: { serie: TVShow, isLoading: bool
           </div>
         </motion.div>
       )}
-    </motion.div>
+    </motion.a>
   );
 };
