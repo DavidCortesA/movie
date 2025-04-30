@@ -25,14 +25,14 @@ export const Footer = () => {
             TMDb
           </Link>
           <Link
-            href="https://github.com/TU_USUARIO"
+            href="https://github.com/DavidCortesA"
             target="_blank"
             className="hover:text-yellow-400 transition"
           >
             GitHub
           </Link>
           <Link
-            href="/about"
+            href="https://developer.themoviedb.org/docs/getting-started"
             className="hover:text-yellow-400 transition"
           >
             Sobre esta app

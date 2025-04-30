@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import { Popcorn } from "lucide-react";
@@ -10,50 +10,59 @@ import { Pagination } from "@/components/Common/Pagination";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default function Page() {
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="flex flex-col items-center justify-center w-full p-8">
+    <div className="text-lg text-gray-400">Cargando próximas películas...</div>
+  </div>
+);
+
+// Client component that uses useSearchParams
+const SearchPage = () => {
+
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const router = useRouter();
   const pageParam = searchParams.get("page");
-
+  
   const [page, setPage] = useState(Number(pageParam) || 1);
   const [typeFilter, setTypeFilter] = useState("all");   // Tipo: movies, tv, person, all
   const [orderFilter, setOrderFilter] = useState("default"); // Ordenamiento: a-z, z-a, recent, oldest
-
+  
   const { data, error, isLoading } = useSWR(
     query
       ? `https://api.themoviedb.org/3/search/multi?query=${query}&page=${page}&api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=es-MX`
       : null,
     fetcher
   );
-
+  
   useEffect(() => {
     if (pageParam && Number(pageParam) !== page) {
       setPage(Number(pageParam));
     }
   }, [pageParam, page]);
-
+  
   const handlePageChange = (newPage: number) => {
     router.push(`/search?q=${query}&page=${newPage}`);
     setPage(newPage);
   };
-
+  
   if (!query) return <p className="p-8 text-center">Escribe algo para buscar.</p>;
   if (isLoading) return <p className="p-8 text-center">Buscando {query}...</p>;
   if (error) return <p className="p-8 text-center text-red-500">Ocurrió un error al buscar.</p>;
-
+  
   // 🔥 Aplicamos filtros aquí:
   let filteredResults = data?.results || [];
-
+  
   // 1️⃣ Filtrado por tipo (primero)
   if (typeFilter === "movies") {
-    filteredResults = filteredResults.filter(({item}: {item: SearchResult}) => item.media_type === "movie");
+    filteredResults = filteredResults.filter((item: SearchResult) => item.media_type === "movie");
   } else if (typeFilter === "tv") {
-    filteredResults = filteredResults.filter(({item}: {item: SearchResult}) => item.media_type === "tv");
+    filteredResults = filteredResults.filter((item: SearchResult) => item.media_type === "tv");
   } else if (typeFilter === "person") {
-    filteredResults = filteredResults.filter(({item}: {item: SearchResult}) => item.media_type === "person");
-  }
-
+    filteredResults = filteredResults.filter((item: SearchResult) => item.media_type === "person");
+  };
+  
   // 2️⃣ Ordenamiento (después)
   if (orderFilter === "a-z") {
     filteredResults = [...filteredResults].sort((a, b) =>
@@ -72,14 +81,14 @@ export default function Page() {
       (a, b) => new Date(a.release_date || a.first_air_date).getTime() - new Date(b.release_date || b.first_air_date).getTime()
     );
   }
-
+  
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="container h-full w-full">
         <h1 className="text-xl font-semibold mb-4 text-center text-white">
           Resultados para: <span className="text-yellow-400">{query}</span>
         </h1>
-
+  
         {/* 🔥 Selects de filtro */}
         <div className="flex flex-wrap gap-4 justify-end mb-6">
           {/* Filtro por tipo */}
@@ -93,7 +102,7 @@ export default function Page() {
             <option value="tv">Series</option>
             <option value="person">Actores</option>
           </select>
-
+  
           {/* Filtro por orden */}
           <select
             value={orderFilter}
@@ -107,7 +116,7 @@ export default function Page() {
             <option value="oldest">Más antiguas</option>
           </select>
         </div>
-
+  
         {filteredResults.length === 0 ? (
           <div className="flex flex-col items-center justify-center w-full h-full">
             <span className="text-yellow-600 text-5xl font-bold rotate-45">
@@ -128,7 +137,7 @@ export default function Page() {
                 />
               ))}
             </div>
-
+  
             {/* Paginación */}
             <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
               <Pagination currentPage={page} totalPages={data?.total_pages} onPageChange={handlePageChange} />
@@ -138,4 +147,11 @@ export default function Page() {
       </div>
     </div>
   );
+}
+export default function Page() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <SearchPage />
+    </Suspense>
+  )
 }

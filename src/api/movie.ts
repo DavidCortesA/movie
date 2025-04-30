@@ -92,6 +92,82 @@ export const useFetchTopRatedMovies = (index:number) => {
   }
 }
 
+export const useFetchMovieById = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/movie/${id}?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    movie: data,
+    isLoadingMovie: isLoading,
+    isErrorMovie: error,
+  }
+};
+
+export const useFetchMovieReviewsByMovieId = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/movie/${id}/reviews?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    reviews: data?.results,
+    isLoadingReviews: isLoading,
+    isErrorReviews: error,
+  }
+};
+
+export const useFetchMovieRecommendationsByMovieId = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/movie/${id}/recommendations?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    recommended: data?.results,
+    isLoadingRecommended: isLoading,
+    isErrorRecommended: error,
+  }
+};
+
+export const useFetchMovieCreditsByMovieId = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/movie/${id}/credits?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    credits: data?.cast,
+    crew: data?.crew,
+    isLoadingCredits: isLoading,
+    isErrorCredits: error,
+  }
+}
+
+export const useFetchMovieVideosByMovieId = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/movie/${id}/videos?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    videos: data?.results,
+    isLoadingVideos: isLoading,
+    isErrorVideos: error,
+  }
+}
+
 export const useFetchGenresMovies = () => {
   const { data, error, isLoading } = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/genre/movie/list?api_key=${

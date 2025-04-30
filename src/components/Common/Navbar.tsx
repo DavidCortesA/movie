@@ -3,9 +3,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "./SearchInput";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export const Navbar = () => {
   const [hoveredMenu, setHoveredMenu] = useState<"movies" | "series" | null>(null);
+  const path = usePathname();
 
   const navItems = {
     movies: [
@@ -25,22 +28,29 @@ export const Navbar = () => {
 
   return (
     <nav className="w-full bg-gray-900 text-white px-8 py-4 shadow-md relative z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold tracking-wide text-yellow-400">
-          🎬 PopcornBox
+          <Image
+            src="/images/popcorn.png"
+            width={50}
+            height={50}
+            alt="Popcorn Logo"
+            className="inline-block"
+          />
+          PopcornBox
         </Link>
 
         {/* Menú central */}
         <div className="flex gap-6 relative">
-          <Link href="/" className="hover:text-yellow-400 transition">Inicio</Link>
+          <Link href="/" className={`${!path.includes("/movies") && !path.includes("/series") ? "text-yellow-400" : "hover:text-yellow-400 transition"} cursor-pointer`}>Inicio</Link>
 
           <div
             onMouseEnter={() => setHoveredMenu("movies")}
             onMouseLeave={() => setHoveredMenu(null)}
             className="relative"
           >
-            <span className="hover:text-yellow-400 cursor-pointer">Películas</span>
+            <span className={`${path.includes("/movies") ? "text-yellow-400" : "hover:text-yellow-400 transition"} cursor-pointer`}>Películas</span>
             <AnimatePresence>
               {hoveredMenu === "movies" && (
                 <motion.div
@@ -68,7 +78,7 @@ export const Navbar = () => {
             onMouseLeave={() => setHoveredMenu(null)}
             className="relative"
           >
-            <span className="hover:text-yellow-400 cursor-pointer">Series</span>
+            <span className={`${path.includes("/series") ? "text-yellow-400" : "hover:text-yellow-400 transition"} cursor-pointer`}>Series</span>
             <AnimatePresence>
               {hoveredMenu === "series" && (
                 <motion.div

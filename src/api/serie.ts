@@ -67,6 +67,82 @@ export const useFetchPopularSeries = (index:number) => {
   };
 };
 
+export const useFetchSerieById = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tv/${id}?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    serie: data,
+    isErroSerie: error,
+    isLoadingSerie: isLoading,
+  };
+};
+
+export const useFetchSerieCredits = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tv/${id}/credits?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    credits: data?.cast,
+    crew: data?.crew,
+    isErroCredits: error,
+    isLoadingCredits: isLoading,
+  };
+};
+
+export const useFetchVideosBySerieId = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tv/${id}/videos?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    videos: data?.results,
+    isErroVideos: error,
+    isLoadingVideos: isLoading,
+  };
+}
+
+export const useFetchReviewsBySerieId = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tv/${id}/reviews?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    reviews: data?.results,
+    isErroReviews: error,
+    isLoadingReviews: isLoading,
+  };
+};
+
+export const useFetchRecommendationsBySerieId = (id:string) => {
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tv/${id}/recommendations?api_key=${
+      process.env.NEXT_PUBLIC_API_KEY
+    }&language=es-MX`,
+    fetcher
+  );
+
+  return {
+    recommendations: data?.results,
+    isErroRecommendations: error,
+    isLoadingRecommendations: isLoading,
+  };
+}
+
 export const useFetchGenresSeries = () => {
   const { data, error, isLoading } = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/genre/tv/list?api_key=${

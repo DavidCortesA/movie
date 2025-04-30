@@ -11,10 +11,10 @@ export const MovieCarousel = ({
   movies,
   isLoading,
 }: {
-  title: string;
-  slug: string;
   movies: Movie[];
   isLoading: boolean;
+  title?: string;
+  slug?: string;
 }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -30,12 +30,14 @@ export const MovieCarousel = ({
   return (
     <section className="w-full mb-8">
       {/* Encabezado */}
-      <div className="flex justify-between items-center px-4 mb-2">
-        <h3 className="text-xl font-bold text-yellow-400">{title}</h3>
-        <Link href={slug} className="text-sm text-yellow-400 hover:underline">
-          Ver más →
-        </Link>
-      </div>
+      {title && (
+        <div className="flex justify-between items-center px-4 mb-2">
+          <h3 className="text-xl font-bold text-yellow-400">{title}</h3>
+          <Link href={slug || "#"} className="text-sm text-yellow-400 hover:underline">
+            Ver más →
+          </Link>
+        </div>
+      )}
 
       {/* Carrusel */}
       <div className="relative">

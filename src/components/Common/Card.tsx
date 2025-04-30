@@ -23,7 +23,7 @@ export const Card = ({ items, isLoading, mediaType }: { items: SearchResult, isL
         ${mediaType === "person" ? "bg-gray-800" : "bg-transparent"}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      href={`/${mediaType}/${items.id}`}
+      href={`/${mediaType === "tv" ? "series" : mediaType === "movie" ? "movies" : "person" }/${items.id}`}
     >
       {/* Imagen */}
       <Image
