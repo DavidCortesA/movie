@@ -1,19 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { MovieCard } from "./MovieCard";
 import { useRef } from "react";
+import { SerieCard } from "./SerieCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export const MovieCarousel = ({
+export const SerieCarousel = ({
   title,
   slug,
-  movies,
+  series,
   isLoading,
 }: {
   title: string;
   slug: string;
-  movies: Movie[];
+  series: TVShow[];
   isLoading: boolean;
 }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -46,14 +46,14 @@ export const MovieCarousel = ({
           <ChevronLeft size={20} />
         </button>
 
-        {/* Carrusel de tarjetas */}
+        {/* Contenedor de tarjetas */}
         <div
           ref={carouselRef}
           className="flex overflow-x-auto gap-4 px-6 py-3 scroll-smooth scrollbar-hide"
         >
-          {movies?.map((movie: Movie) => (
-            <div key={movie.id} className="min-w-[200px]">
-              <MovieCard movie={movie} isLoading={isLoading} />
+          {series.map((serie: TVShow) => (
+            <div key={serie.id} className="min-w-[200px]">
+              <SerieCard serie={serie} isLoading={isLoading} />
             </div>
           ))}
         </div>

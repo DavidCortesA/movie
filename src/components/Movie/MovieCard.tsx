@@ -18,15 +18,17 @@ export const MovieCard = ({ movie, isLoading }: { movie: Movie, isLoading: boole
       <Image
         src={!isLoading ? getImageUrl(movie.poster_path) : '/loading.gif'}
         alt={movie.title}
-        className="rounded w-full"
+        className="rounded w-full object-cover"
         width={200}
         height={300}
       />
-      <div className="absolute top-5 px-3 py-1 bg-indigo-600 text-white text-sm rounded-e-full font-bold">
+
+      {/* Porcentaje de calificación */}
+      <div className="absolute top-5 px-3 py-1 bg-yellow-400 text-black text-sm rounded-e-full font-bold shadow-sm">
         {(movie.vote_average * 10).toFixed(0)}%
       </div>
 
-      {/* Motion overlay on hover */}
+      {/* Overlay al hacer hover */}
       {isHovered && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,7 +39,9 @@ export const MovieCard = ({ movie, isLoading }: { movie: Movie, isLoading: boole
         >
           <div className="text-center w-full">
             <h1 className="text-xl md:text-2xl">{movie.title}</h1>
-            <p className="text-sm font-medium mt-2 text-justify">{limitText(movie.overview, 125)}</p>
+            <p className="text-sm font-medium mt-2 text-justify">
+              {limitText(movie.overview, 125)}
+            </p>
           </div>
         </motion.div>
       )}
