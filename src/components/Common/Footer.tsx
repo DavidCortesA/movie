@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="text-center md:text-left">
           <p>
             Desarrollado por{" "}
-            <span className="text-yellow-400 font-semibold">David Cortez</span> — 2025
+            <span className="text-yellow-400 font-semibold">David Cortez</span> — {new Date().getFullYear()}
           </p>
           <p className="text-xs mt-1 text-gray-400">
             Esta app usa la API de TMDb pero no está afiliada oficialmente.

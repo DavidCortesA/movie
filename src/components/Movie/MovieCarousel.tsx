@@ -25,6 +25,8 @@ export const MovieCarousel = ({
     carouselRef.current.scrollTo({ left: scrollLeft + scrollAmount, behavior: "smooth" });
   };
 
+  if (isLoading && !movies) return null
+
   return (
     <section className="w-full mb-8">
       {/* Encabezado */}
@@ -49,7 +51,7 @@ export const MovieCarousel = ({
         {/* Carrusel de tarjetas */}
         <div
           ref={carouselRef}
-          className="flex overflow-x-auto gap-4 px-6 py-3 scroll-smooth scrollbar-hide"
+          className="flex overflow-x-hidden gap-4 px-6 py-3 scroll-smooth scrollbar-hide"
         >
           {movies?.map((movie: Movie) => (
             <div key={movie.id} className="min-w-[200px]">
