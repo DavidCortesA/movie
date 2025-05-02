@@ -3,11 +3,11 @@
 import { Suspense, useState } from "react";
 import { useFetchGenresMovies } from "@/api/movie";
 import { useFetchPersonById, useFetchPersonCombinedCredits } from "@/api/person";
-import { useFetchGenresSeries } from "@/api/serie";
 import { Card, media_type } from "@/components/Common/Card";
 import { getImageUrl } from "@/utils/generic";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { ChevronLeft } from "lucide-react";
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -17,16 +17,13 @@ const LoadingFallback = () => (
 );
 
 const PersonPage = () => {
-
   const { slug } = useParams();
-  
+  const router = useRouter();
   const [visibleCount, setVisibleCount] = useState(10);
   const [orderFilter, setOrderFilter] = useState("default");
   const [genreFilter, setGenreFilter] = useState("all");
   const [genre, setGenre] = useState<string>("");
-  const { genresTV, isLoadingGenres: isLoadingGenresTV } = useFetchGenresSeries();
   const { genresMovie, isLoadingGenres } = useFetchGenresMovies();
-  
   
   const { data: person, isLoading: isLoadingPerson } = useFetchPersonById(slug as string);
   const { data: combinedCredits, isLoading: isLoadingCredits } = useFetchPersonCombinedCredits(slug as string);
@@ -75,6 +72,9 @@ const PersonPage = () => {
   
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="mb-3">
+        <span onClick={() => router.back()} className="bg-yellow-500 hover:bg-yellow-600 text-white flex flex-row w-fit p-2 gap-2 items-center rounded-full cursor-pointer"><ChevronLeft /> Regresar</span>
+      </div>
       <div className="flex flex-col md:flex-row gap-8">
         {/* Imagen del actor */}
         <div className="w-full md:w-1/3">
@@ -141,33 +141,17 @@ const PersonPage = () => {
               <option value="popular">Más popular</option>
             </select>
   
-            {genreFilter === "movie" && (
-              !isLoadingGenres && (
-                <select
-                  value={genre}
-                  onChange={(e) => setGenre(e.target.value)}
-                  className="p-2 rounded bg-gray-800 text-white border border-gray-600"
-                >
-                  <option value="">Todos los géneros</option>
-                  {genresMovie?.map((genre: Genre) => (
-                    <option key={genre.id} value={genre.id}>{genre.name}</option>
-                  ))}
-                </select>
-              )
-            )}
-            {genreFilter === "tv" && (
-              !isLoadingGenresTV && (
-                <select
-                  value={genre}
-                  onChange={(e) => setGenre(e.target.value)}
-                  className="p-2 rounded bg-gray-800 text-white border border-gray-600"
-                >
-                  <option value="default">Todos los géneros</option>
-                  {genresTV?.map((genre: Genre) => (
-                    <option key={genre.id} value={genre.id}>{genre.name}</option>
-                  ))}
-                </select>
-              )
+            {!isLoadingGenres && (
+              <select
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
+                className="p-2 rounded bg-gray-800 text-white border border-gray-600"
+              >
+                <option value="">Todos los géneros</option>
+                {genresMovie?.map((genre: Genre) => (
+                  <option key={genre.id} value={genre.id}>{genre.name}</option>
+                ))}
+              </select>
             )}
           </div>
         </div>

@@ -1,12 +1,13 @@
 'use client'
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useFetchSerieById } from "@/api/serie";
 import { getImageUrl, formatDate } from "@/utils/generic";
 import Image from "next/image";
 import Link from "next/link";
 import { SerieTabs } from "@/components/Serie/SerieTabs";
 import { Suspense } from "react";
+import { ChevronLeft } from "lucide-react";
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -18,6 +19,7 @@ const LoadingFallback = () => (
 const SeriePage = () => {
   const { slug } = useParams();
   const { serie, isErroSerie, isLoadingSerie } = useFetchSerieById(slug as string);
+  const router = useRouter();
   
   if (isErroSerie) return null;
   if (isLoadingSerie) return null;
@@ -30,6 +32,9 @@ const SeriePage = () => {
       >
         <div className="absolute inset-0 backdrop-blur-sm backdrop-brightness-50"></div>
         <div className="relative container mx-auto px-4 py-8">
+          <div className="mb-3">
+            <span onClick={() => router.back()} className="bg-yellow-500 hover:bg-yellow-600 text-white flex flex-row w-fit p-2 gap-2 items-center rounded-full cursor-pointer"><ChevronLeft /> Regresar</span>
+          </div>
           <div className="flex flex-col md:flex-row gap-8">
   
             {/* Imagen */}
