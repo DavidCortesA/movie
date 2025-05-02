@@ -16,13 +16,13 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col gap-3 items-center justify-center">
       <div className="container">
-        <MovieCarousel title="Peliculas en Tendencia" slug="/movie/trending" movies={trendingMovie} isLoading={isLoadingTrending} />
-        <MovieCarousel title="Peliculas Populares" slug="/movie/popular" movies={popularMovie} isLoading={isLoadingPopular} />
-        <MovieCarousel title="Peliculas por venir" slug="/movie/upcoming" movies={upcomingMovie} isLoading={isLoadingUpcoming} />
+        <MovieCarousel title="Peliculas en Tendencia" slug="/movies/trending" movies={trendingMovie} isLoading={isLoadingTrending} />
+        <MovieCarousel title="Peliculas Populares" slug="/movies/popular" movies={popularMovie} isLoading={isLoadingPopular} />
+        <MovieCarousel title="Peliculas por venir" slug="/movies/upcoming" movies={upcomingMovie} isLoading={isLoadingUpcoming} />
         <hr className="text-yellow-300 my-10 w-full" />
-        <SerieCarousel title="Series en Tendencia" slug="/tv/trending" series={trendingTV} isLoading={isLoadingTrendingTV} />
-        <SerieCarousel title="Series Populares" slug="/tv/popular" series={topRatedTV} isLoading={isLoadingTopRated} />
-        <SerieCarousel title="Series al Aire" slug="/tv/on_the_air" series={onAirTV} isLoading={isLoadingOnAir} />
+        <SerieCarousel title="Series en Tendencia" slug="/series/trending" series={trendingTV} isLoading={isLoadingTrendingTV} />
+        <SerieCarousel title="Series Populares" slug="/series/popular" series={topRatedTV} isLoading={isLoadingTopRated} />
+        <SerieCarousel title="Series al Aire" slug="/series/on_air" series={onAirTV} isLoading={isLoadingOnAir} />
       </div>
     </div>
   );
