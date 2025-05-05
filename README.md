@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PopcornBox
 
-## Getting Started
+![PopcornBox Logo](./public/images/popcorn.png)
 
-First, run the development server:
+## Descripción General
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+PopcornBox es una plataforma moderna de streaming de películas y series que permite a los usuarios descubrir, buscar y disfrutar de contenido audiovisual de alta calidad. La aplicación ofrece una experiencia fluida y atractiva con una interfaz intuitiva, diseñada para hacer que la navegación y el consumo de contenido sean lo más agradables posible.
+
+## Tecnologías Utilizadas
+
+- **Frontend**: 
+  - [Next.js 15](https://nextjs.org/) - Framework de React con renderizado del lado del servidor
+  - [React 19](https://react.dev/) - Biblioteca de JavaScript para construir interfaces de usuario
+  - [TypeScript](https://www.typescriptlang.org/) - Superset tipado de JavaScript
+  - [Tailwind CSS 4](https://tailwindcss.com/) - Framework CSS utility-first
+  - [Motion](https://motion.dev/) - Biblioteca para animaciones fluidas
+  - [SWR](https://swr.vercel.app/) - Biblioteca para manejo de caché y obtención de datos
+  - [Lucide React](https://lucide.dev/) - Iconos SVG
+
+- **Desarrollo**:
+  - [ESLint](https://eslint.org/) - Linter para identificar problemas en el código
+  - [TurboPack](https://turbo.build/) - Empaquetador optimizado para Next.js
+
+## Estructura del Proyecto
+
+PopcornBox sigue una estructura de proyecto modular y escalable:
+
+```
+popcornbox/
+├── .next/               # Archivos generados por Next.js (generado automáticamente)
+├── node_modules/        # Dependencias de Node.js (generado automáticamente)
+├── public/              # Archivos estáticos accesibles públicamente
+├── src/                 # Código fuente de la aplicación
+│   ├── api/             # Endpoints de API y lógica de servicios
+│   ├── app/             # Definición de rutas y páginas de la aplicación (Next.js App Router)
+│   ├── components/      # Componentes React reutilizables
+│   ├── contexts/        # Contextos de React para estado global
+│   ├── styles/          # Estilos globales y configuración de Tailwind
+│   ├── types/           # Definiciones de tipos TypeScript
+│   └── utils/           # Funciones utilitarias y helpers
+├── .env                 # Variables de entorno (no incluido en control de versión)
+├── .gitignore           # Archivos y directorios ignorados por Git
+├── eslint.config.mjs    # Configuración de ESLint
+├── next.config.ts       # Configuración de Next.js
+├── package.json         # Dependencias y scripts del proyecto
+├── postcss.config.mjs   # Configuración de PostCSS
+├── tsconfig.json        # Configuración de TypeScript
+└── README.md            # Documentación del proyecto (este archivo)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Requisitos de Instalación
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para ejecutar PopcornBox localmente, necesitarás tener instalado:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Node.js](https://nodejs.org/) (versión 18.17.0 o superior)
+- [npm](https://www.npmjs.com/) (viene con Node.js) o [yarn](https://yarnpkg.com/) o [pnpm](https://pnpm.io/) o [bun](https://bun.sh/)
+- [Git](https://git-scm.com/) para clonar el repositorio
 
-## Learn More
+## Instrucciones de Configuración
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/DavidCortesA/movie.git
+   cd popcornbox
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Instalar dependencias**:
+   ```bash
+   npm install
+   # o
+   yarn install
+   # o
+   pnpm install
+   # o
+   bun install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Configurar variables de entorno**:
+   - Crea un archivo `.env` en la raíz del proyecto basado en `.env.example` (si existe)
+   - Configura las variables necesarias, como API keys o URLs de servicios
 
-## Deploy on Vercel
+4. **Iniciar el servidor de desarrollo**:
+   ```bash
+   npm run dev
+   # o
+   yarn dev
+   # o
+   pnpm dev
+   # o
+   bun dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Acceder a la aplicación**:
+   - Abre [http://localhost:3000](http://localhost:3000) en tu navegador
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Comandos Disponibles
+
+- `npm run dev` - Inicia el servidor de desarrollo con TurboPack
+- `npm run build` - Construye la aplicación para producción
+- `npm run start` - Inicia la aplicación en modo producción
+- `npm run lint` - Ejecuta ESLint para verificar y arreglar problemas de código
+
+## Características Principales
+
+- **Catálogo Extenso**: Acceso a una amplia variedad de películas y series
+- **Interfaz Intuitiva**: Diseño moderno con animaciones fluidas utilizando Motion
+- **Sistema de Búsqueda**: Busca títulos por nombre, género, actor, director, etc.
+- **Perfiles de Usuario**: Crea y personaliza perfiles para recibir recomendaciones personalizadas
+- **Listas Personalizadas**: Guarda contenido en "Mi Lista" para ver más tarde
+- **Reproducción Optimizada**: Streaming de alta calidad con mínimo buffering
+- **Diseño Responsivo**: Experiencia optimizada para dispositivos móviles, tablets y desktops
+- **Modo Oscuro/Claro**: Cambia entre temas según tus preferencias
+
+## Estructura de Directorios Detallada
+
+### `/public`
+Contiene archivos estáticos como imágenes, favicon, y otros recursos accesibles públicamente.
+
+### `/src/api`
+Contiene la lógica de servicios y endpoints de API:
+- Integraciones con APIs externas de películas y series
+- Lógica para obtener y filtrar datos
+
+### `/src/app`
+Implementa el App Router de Next.js:
+- Estructura de rutas y páginas
+- Layouts compartidos
+- Loading states y error boundaries
+
+### `/src/components`
+Componentes React reutilizables organizados por funcionalidad:
+- UI: elementos básicos de la interfaz (botones, inputs, tarjetas)
+- Layout: componentes de estructura (header, footer, sidebar)
+- Movie: componentes específicos relacionados con películas
+- Series: componentes específicos relacionados con series
+- User: componentes relacionados con la gestión de usuarios
+
+### `/src/contexts`
+Contextos de React para manejar estado global:
+- ThemeContext: para gestionar el modo oscuro/claro
+- AuthContext: para manejar la autenticación
+- PlayerContext: para el estado del reproductor
+
+### `/src/styles`
+Estilos globales y configuración de Tailwind CSS.
+
+### `/src/types`
+Definiciones de tipos TypeScript para:
+- Modelos de datos (Movie, Series, User)
+- Respuestas de API
+- Props de componentes complejos
+
+### `/src/utils`
+Funciones utilitarias:
+- Formatters: formateo de fechas, duraciones, etc.
+- Validators: validación de entradas de usuario
+- Helpers: funciones auxiliares reutilizables
+
+## Contribución
+
+¡Contribuciones a PopcornBox son bienvenidas! Para contribuir:
+
+1. Haz un fork del repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/amazing-feature`)
+3. Realiza tus cambios
+4. Ejecuta los linters y tests para asegurar la calidad del código
+5. Commit tus cambios (`git commit -m 'Add amazing feature'`)
+6. Push a la rama (`git push origin feature/amazing-feature`)
+7. Abre un Pull Request
+
+## Licencia
+
+Este proyecto está licenciado bajo la licencia [MIT](LICENSE).
+
+---
+
+Desarrollado con ❤️ por el equipo de PopcornBox
