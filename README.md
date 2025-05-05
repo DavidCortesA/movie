@@ -1,6 +1,60 @@
-# PopcornBox
+# 🍿 PopcornBox 🎬
 
 ![PopcornBox Logo](./public/images/popcorn.png)
+
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.1-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-0.1.0-blue.svg)]()
+
+> 🚀 Una experiencia moderna de streaming con diseño elegante y rendimiento excepcional
+
+PopcornBox es una plataforma de streaming que combina una interfaz intuitiva con acceso a un amplio catálogo de películas y series. Diseñada con las últimas tecnologías web para ofrecer una experiencia fluida y atractiva en cualquier dispositivo.
+
+<div align="center">
+
+<!-- Tipo de Proyecto -->
+`#web-application` `#frontend` `#spa` `#streaming-service` `#open-source`
+
+<!-- Tecnologías -->
+`#nextjs` `#react` `#typescript` `#tailwindcss` `#turborepo` `#swr` `#motion`
+
+<!-- Características -->
+`#responsive-design` `#dark-mode` `#user-experience` `#modern-ui` `#pwa` `#animations`
+
+<!-- Dominio -->
+`#streaming-platform` `#movies` `#tv-series` `#entertainment` `#video-player` `#media`
+
+<!-- Estado -->
+`#in-development` `#version-0.1.0` `#actively-maintained` `#beta`
+
+</div>
+
+### ✨ Características Destacadas
+
+- 🎭 **Catálogo Extenso** - Amplia variedad de películas y series
+- 🔍 **Búsqueda Avanzada** - Encuentra contenido por título, género, actor y más
+- 📱 **Diseño Responsivo** - Experiencia optimizada para cualquier dispositivo
+- 🌓 **Modo Oscuro/Claro** - Interfaz adaptable a tus preferencias
+- ⚡ **Rendimiento Optimizado** - Carga rápida y streaming sin interrupciones
+
+### 🚦 Estado del Proyecto
+
+- ⏳ **Estado**: En desarrollo activo
+- 🔄 **Versión**: 0.1.0
+- 📅 **Última Actualización**: Mayo 2025
+
+### 📚 Enlaces Rápidos
+
+- [🔧 Instalación](#requisitos-de-instalación)
+- [⚙️ Configuración](#instrucciones-de-configuración)
+- [📋 Comandos](#comandos-disponibles)
+- [📁 Estructura](#estructura-del-proyecto)
+- [👥 Contribución](#contribución)
+
+---
 
 ## Descripción General
 
