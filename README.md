@@ -1,7 +1,5 @@
 # 🍿 PopcornBox 🎬
 
-![PopcornBox Logo](./public/images/popcorn.png)
-
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.1-black?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org/)
